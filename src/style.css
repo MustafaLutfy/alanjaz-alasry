@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  /* OPRA blue — sampled from the logo (#044494) */
+  --color-brand-50: #F2F6FD;
+  --color-brand-100: #E3ECFA;
+  --color-brand-200: #C2D5F3;
+  --color-brand-400: #4F86DB;
+  --color-brand-500: #1F62C7;
+  --color-brand-600: #0B52B4;
+  --color-brand-700: #044494;
+  --color-brand-800: #06336F;
+  --color-brand-900: #071F44;
+
+  /* Marble & stone neutrals from the product photography */
+  --color-ink: #0B1B33;
+  --color-ink-soft: #4A5568;
+  --color-marble: #F7F4EF;
+  --color-stone: #ECE5DA;
+  --color-sand: #CDBFAD;
+  --color-glow: #F3D6A2;
+  --color-wa: #25D366;
+
+  --font-ar: 'Alexandria', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-wave: wave 14s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes marquee {
+    to { transform: translateX(50%); }
+  }
+  @keyframes wave {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-ar);
+  background: var(--color-marble);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Cormorant defaults to old-style figures ("01" reads as "OI") */
+.font-serif { font-variant-numeric: lining-nums; }
+
+::selection { background: var(--color-brand-700); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-marble); }
+::-webkit-scrollbar-thumb { background: var(--color-brand-200); border-radius: 10px; border: 2px solid var(--color-marble); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-500); }
+
+/* Scroll reveal (driven by v-reveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(8px);
+  transition: opacity 1s var(--ease-out-expo), transform 1.1s var(--ease-out-expo), filter 1s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-in { opacity: 1; transform: none; filter: none; }
+
+/* Masked line rise; runs after the intro (html.ready) or when a v-reveal parent comes into view */
+.rise { display: block; overflow: hidden; padding-block: 0.08em; }
+.rise > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.2s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+.ready .rise > span, .is-in .rise > span { transform: none; }
+
+/* Fade-up that waits for html.ready (hero, first paint) */
+.enter {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+  transition-delay: var(--d, 0ms);
+}
+.ready .enter { opacity: 1; transform: none; }
+
+/* Marble-ish backdrop texture */
+.bg-marble {
+  background-color: var(--color-marble);
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgba(31, 98, 199, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(243, 214, 162, 0.22), transparent 60%),
+    linear-gradient(115deg, transparent 40%, rgba(205, 191, 173, 0.18) 41%, transparent 43%),
+    linear-gradient(160deg, transparent 62%, rgba(205, 191, 173, 0.14) 63%, transparent 64.5%);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-brand-700), var(--color-brand-400) 55%, var(--color-brand-700));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s ease-in-out infinite;
+}
+@keyframes shine { 50% { background-position: 100% 0; } }
+
+/* Scroll-linked parallax — progressive enhancement, static where unsupported */
+@supports (animation-timeline: view()) {
+  .parallax {
+    animation: parallax linear both;
+    animation-timeline: view();
+  }
+  @keyframes parallax {
+    from { transform: translateY(var(--p, 60px)); }
+    to { transform: translateY(calc(var(--p, 60px) * -1)); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax { animation: none !important; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal, .enter { opacity: 1; transform: none; filter: none; }
+  .rise > span { transform: none; }
+}

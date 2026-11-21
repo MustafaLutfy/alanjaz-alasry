@@ -1,7 +1,7 @@
 <script setup>
 import SiteBrand from './SiteBrand.vue'
 import BrandIcon from './BrandIcon.vue'
-import { nav, categories, phones, waLink, instagram, hours, location } from '../data'
+import { nav, categories, phones, waLink, instagram, socials, agencies, hours, location } from '../data'
 </script>
 
 <template>
@@ -11,8 +11,8 @@ import { nav, categories, phones, waLink, instagram, hours, location } from '../
         <SiteBrand dark />
         <p class="mt-6 max-w-sm leading-relaxed">معرض أوبرا لمستلزمات الحمامات والمغاسل والاكسسوارات. جودة عالية .. تصميم راقي.</p>
         <div class="mt-6 flex gap-2.5">
-          <a :href="instagram" target="_blank" rel="noopener" aria-label="Instagram" class="grid size-11 place-items-center rounded-full bg-white/[0.07] text-white ring-1 ring-white/15 transition-colors hover:bg-white hover:text-brand-700"><BrandIcon name="instagram" /></a>
-          <a :href="waLink()" target="_blank" rel="noopener" aria-label="WhatsApp" class="grid size-11 place-items-center rounded-full bg-white/[0.07] text-white ring-1 ring-white/15 transition-colors hover:bg-white hover:text-brand-700"><BrandIcon name="whatsapp" /></a>
+          <a v-for="s in socials" :key="s.name" :href="s.url" target="_blank" rel="noopener" :aria-label="s.label" class="grid size-11 place-items-center rounded-full bg-white/[0.07] text-white ring-1 ring-white/15 transition-colors hover:bg-white hover:text-brand-700"><BrandIcon :name="s.name" /></a>
+          <a :href="waLink()" target="_blank" rel="noopener" aria-label="واتساب" class="grid size-11 place-items-center rounded-full bg-white/[0.07] text-white ring-1 ring-white/15 transition-colors hover:bg-white hover:text-brand-700"><BrandIcon name="whatsapp" /></a>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ import { nav, categories, phones, waLink, instagram, hours, location } from '../
     <div class="relative border-t border-white/10">
       <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-sm sm:flex-row sm:px-8">
         <p>© {{ new Date().getFullYear() }} الإنجاز العصري. جميع الحقوق محفوظة.</p>
-        <p class="font-serif tracking-[0.2em]">OPRA · BATHROOM CABINET</p>
+        <p class="font-serif tracking-[0.2em]" dir="ltr">{{ agencies.join(' · ') }}</p>
       </div>
     </div>
   </footer>

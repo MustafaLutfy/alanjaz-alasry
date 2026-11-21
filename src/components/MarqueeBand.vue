@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 // Velocity marquee: drifts on its own, speeds up / skews with scroll speed and follows scroll direction.
-const items = ['كابينات الحمام', 'المرايا', 'المغاسل', 'الخلاطات', 'الشاورات', 'المراحيض', 'الاكسسوارات', 'جودة عالية', 'تصميم راقي']
+const items = ['مغاسل كاونتر', 'مغاسل بورسلين', 'المرايا', 'الدوش', 'غربي وشرقي', 'الاكسسوارات', 'جودة عالية', 'تصميم راقي']
 const COPIES = 3
 const box = ref()
 const track = ref()

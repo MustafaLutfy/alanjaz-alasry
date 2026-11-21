@@ -6,7 +6,7 @@ import Eyebrow from '../components/Eyebrow.vue'
 import Accent from '../components/Accent.vue'
 import Btn from '../components/Btn.vue'
 import BrandIcon from '../components/BrandIcon.vue'
-import { phones, instagram, waLink, governorates, categories, faq, location, hours } from '../data'
+import { phones, socials, waLink, governorates, categories, faq, location, hours } from '../data'
 import { normalizePhone } from '../utils'
 
 const form = reactive({ name: '', phone: '', gov: '', cat: '', msg: '' })
@@ -55,16 +55,16 @@ const field = 'h-13 w-full rounded-2xl border border-ink/[0.1] bg-marble px-4 te
             <p class="mt-3 text-sm text-ink-soft">واتساب</p>
             <p class="mt-0.5 font-bold">راسلنا مباشرة</p>
           </a>
-          <a :href="instagram" target="_blank" rel="noopener" class="group rounded-card bg-white/80 ring-1 ring-ink/[0.06] p-5 transition-colors duration-300 hover:bg-white">
-            <BrandIcon name="instagram" :size="24" class="text-brand-700" />
-            <p class="mt-3 text-sm text-ink-soft">انستغرام</p>
-            <p class="mt-0.5 font-bold" dir="ltr">@alanjaz_alasry</p>
+          <a v-for="s in socials" :key="s.name" :href="s.url" target="_blank" rel="noopener" class="group rounded-card bg-white/80 ring-1 ring-ink/[0.06] p-5 transition-colors duration-300 hover:bg-white">
+            <BrandIcon :name="s.name" :size="24" class="text-brand-700" />
+            <p class="mt-3 text-sm text-ink-soft">{{ s.label }}</p>
+            <p class="mt-0.5 truncate font-bold" :dir="s.handle.startsWith('@') ? 'ltr' : null">{{ s.handle }}</p>
           </a>
         </div>
         <div v-reveal="280" class="rounded-card bg-white/80 ring-1 ring-ink/[0.06] p-6">
           <div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-brand-700/[0.07] text-brand-700"><Clock :size="20" /></span><h2 class="font-bold">أوقات الدوام</h2></div>
           <dl class="mt-4 divide-y divide-stone text-[15px]">
-            <div class="flex justify-between py-3"><dt>السبت — الخميس</dt><dd class="font-semibold text-brand-700">مفتوح</dd></div>
+            <div class="flex justify-between py-3"><dt>السبت — الخميس</dt><dd class="font-semibold text-brand-700">8 صباحاً – 3 عصراً</dd></div>
             <div class="flex justify-between py-3 text-ink-soft"><dt>الجمعة</dt><dd>مغلق</dd></div>
           </dl>
         </div>

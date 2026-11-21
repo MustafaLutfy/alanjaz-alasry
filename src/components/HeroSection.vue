@@ -36,7 +36,7 @@ const trust = [
             <span v-if="today.open" class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60"></span>
             <span class="relative inline-flex size-2.5 rounded-full" :class="today.open ? 'bg-emerald-500' : 'bg-sand'"></span>
           </span>
-          <span :class="today.open ? 'text-ink' : 'text-ink-soft'">{{ today.open ? 'مفتوح الآن · حتى 3 العصر' : 'مغلق الآن · الدوام 7 ص – 3 م' }}</span>
+          <span :class="today.open ? 'text-ink' : 'text-ink-soft'">{{ today.open ? 'مفتوح الآن · حتى 3 العصر' : 'مغلق الآن · الدوام 8 ص – 3 م' }}</span>
           <span class="h-4 w-px bg-ink/15"></span>
           <span class="text-brand-700">معرض أوبرا</span>
         </div>
@@ -48,7 +48,7 @@ const trust = [
         </h1>
 
         <p class="enter t-lead mx-auto mt-8 max-w-xl text-ink-soft lg:mx-0" style="--d: 600ms">
-          الإنجاز العصري — كابينات، مغاسل، خلاطات، مرايا واكسسوارات من OPRA، بتصاميم عصرية مختارة بعناية.
+          الإنجاز العصري — مغاسل كاونتر وبورسلين، مرايا، دوش، مراحيض واكسسوارات من أربع وكالات تجارية، بتصاميم عصرية مختارة بعناية.
         </p>
 
         <div class="enter mx-auto mt-10 flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center lg:mx-0 lg:justify-start" style="--d: 720ms">

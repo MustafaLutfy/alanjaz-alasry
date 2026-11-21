@@ -1,9 +1,10 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
 import MarqueeBand from '../components/MarqueeBand.vue'
+import Statement from '../components/Statement.vue'
 import CategoriesScroller from '../components/CategoriesScroller.vue'
 import WhyOpra from '../components/WhyOpra.vue'
-import JourneySection from '../components/JourneySection.vue'
+import OrderSteps from '../components/OrderSteps.vue'
 import GallerySection from '../components/GallerySection.vue'
 import ContactSection from '../components/ContactSection.vue'
 </script>
@@ -12,9 +13,10 @@ import ContactSection from '../components/ContactSection.vue'
   <main>
     <HeroSection />
     <MarqueeBand />
+    <Statement />
     <CategoriesScroller />
     <WhyOpra />
-    <JourneySection />
+    <OrderSteps />
     <GallerySection />
     <ContactSection />
   </main>

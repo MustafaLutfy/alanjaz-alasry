@@ -4,7 +4,7 @@ export const phones = [
   { label: '0783 334 2925', tel: '+9647833342925' },
 ]
 export const instagram = 'https://www.instagram.com/alanjaz_alasry'
-export const hours = 'يومياً عدا الجمعة'
+export const hours = 'يومياً عدا الجمعة · 7 صباحاً – 3 عصراً'
 export const waLink = (text = '') => `https://wa.me/9647733342925${text ? `?text=${encodeURIComponent(text)}` : ''}`
 
 // Showroom pin (from the client's Google Maps link)
@@ -32,10 +32,17 @@ export const categories = [
   { slug: 'showers', title: 'الشاورات والخلاطات', en: 'Showers & Mixers', img: '/images/bathroom-grey.jpg', desc: 'خلاطات وشاورات بتشطيبات وأشكال متنوعة.' },
   { slug: 'accessories', title: 'الاكسسوارات', en: 'Accessories', img: '/images/towel-rack.jpg', desc: 'حمّالات ورفوف واكسسوارات تكمّل تفاصيل حمامك.' },
 ]
-export const categoryBy = (slug) => categories.find((c) => c.slug === slug)
+// Gallery-only tab for real photos of the showroom itself
+export const galleryCats = [{ slug: 'showroom', title: 'معرضنا', en: 'Our Showroom' }, ...categories]
+export const categoryBy = (slug) => galleryCats.find((c) => c.slug === slug)
 
-// Display-only photos from the brand's Instagram — inspiration, not a stock list
+// Gallery photos: the real showroom first, then display-only inspiration shots (not a stock list)
 export const showcase = [
+  { img: '/images/showroom-hall.jpg', cat: 'showroom' },
+  { img: '/images/showroom-mixers.jpg', cat: 'showroom' },
+  { img: '/images/storefront.jpg', cat: 'showroom' },
+  { img: '/images/company-sign.jpg', cat: 'showroom' },
+  { img: '/images/storefront-side.jpg', cat: 'showroom' },
   { img: '/images/vanity-led.jpg', cat: 'cabinets' },
   { img: '/images/vanity-white.jpg', cat: 'cabinets' },
   { img: '/images/mirror-round.jpg', cat: 'mirrors' },
@@ -55,6 +62,6 @@ export const faq = [
   { q: 'هل يوجد توصيل لمحافظتي؟', a: 'نعم، نوفر خدمة التوصيل إلى جميع المحافظات العراقية، مع تغليف آمن والتزام بالوقت.' },
   { q: 'هل الصور بالموقع هي المتوفر حالياً؟', a: 'الصور للعرض والإلهام فقط، والتشكيلة المتوفرة تتغير باستمرار. راسلنا على واتساب ونخبرك بالمتوفر حالياً.' },
   { q: 'شلون أعرف السعر؟', a: 'الأسعار تختلف حسب القطعة والمقاس واللون. ابعث صورة أو وصف اللي تريده على واتساب ونرد عليك بالتفاصيل.' },
-  { q: 'ما هي أوقات الدوام؟', a: 'المعرض مفتوح يومياً عدا يوم الجمعة.' },
+  { q: 'ما هي أوقات الدوام؟', a: 'المعرض مفتوح يومياً من 7 الصبح لحد 3 العصر، عدا يوم الجمعة.' },
   { q: 'وين موقع المعرض؟', a: 'المعرض في بغداد، والموقع موجود على الخريطة بصفحة "اتصل بنا" — تكدر تفتحه مباشرة على خرائط Google.' },
 ]

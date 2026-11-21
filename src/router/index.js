@@ -13,9 +13,8 @@ const router = createRouter({
     { path: '/:pathMatch(.*)*', component: () => import('../views/NotFoundView.vue'), meta: { title: `الصفحة غير موجودة | ${SITE}` } },
   ],
   scrollBehavior(to, from, saved) {
-    if (to.path === from.path) return false // query-only change (product filters): keep position
-    // wait for the page fade-out before jumping
-    return new Promise((r) => setTimeout(() => r(saved || { top: 0, behavior: 'instant' }), 260))
+    if (to.path === from.path) return false // query-only change (gallery filter): keep position
+    return saved || { top: 0, behavior: 'instant' } // runs while the page curtain covers the screen
   },
 })
 
